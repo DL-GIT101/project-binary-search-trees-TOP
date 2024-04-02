@@ -1,7 +1,7 @@
 {
-  "name": "",
+  "name": "project-binary-search-trees-top",
   "version": "1.0.0",
-  "description": "",
+  "description": "A Top Project where binary search trees is created and used",
   "private": true,
   "scripts": {
     "start": "webpack serve --open --config webpack.dev.js",
