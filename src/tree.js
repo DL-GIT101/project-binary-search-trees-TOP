@@ -1,19 +1,31 @@
+import { CreateNode } from "./node";
+
 const CreateTree = (array) => {
 
     let _root = null;
 
-    function buildTree(array) {
+    array.sort((a, b) => a - b);
+    const cleanArray = array.filter((curr, index, arr) => {
+        return arr.indexOf(curr) === index;
+    });
+    console.log(cleanArray);
 
-        array.sort((a, b) => a - b);
-        const cleanArray = array.filter((curr, index, arr) => {
-            return arr.indexOf(curr) === index;
-        });
-        
-       // return rootNode;
+    function buildTree(array, start, end) {
+
+        if(start > end) {
+            return null;
+        }
+
+        let mid = parseInt((start + end) / 2);
+        let node = CreateNode(array[mid]);
+
+        node.setLeft(buildTree(array, start, mid - 1));
+        node.setRight(buildTree(array, mid + 1, end));
+
+        return node;
     }
 
-    buildTree(array);
-
+    return _root = buildTree(cleanArray, 0, cleanArray.length - 1);
 }
 
 export { CreateTree };
