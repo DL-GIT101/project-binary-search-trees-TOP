@@ -5,7 +5,9 @@ const CreateTree = (array) => {
     function buildTree(array) {
 
         array.sort((a, b) => a - b);
-        console.log(array);
+        const cleanArray = array.filter((curr, index, arr) => {
+            return arr.indexOf(curr) === index;
+        });
         
        // return rootNode;
     }
