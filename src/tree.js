@@ -8,7 +8,6 @@ const CreateTree = (array) => {
     const cleanArray = array.filter((curr, index, arr) => {
         return arr.indexOf(curr) === index;
     });
-    console.log(cleanArray);
 
     function buildTree(array, start, end) {
 
@@ -29,7 +28,20 @@ const CreateTree = (array) => {
 
     return {
         getRoot: () => _root,
-        
+        insert: (value) => {
+            const getLeaf = (value, node) => {
+                if(node == null){
+                    return CreateNode(value);
+                } else if (value > node.getValue()){
+                    node.setRight(getLeaf(value, node.getRight()));
+                    return node;
+                }else {
+                    node.setLeft(getLeaf(value, node.getLeft()));
+                    return node;
+                }
+            }
+            getLeaf(value, _root);
+        }
     };
 }
 
