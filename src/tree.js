@@ -25,7 +25,12 @@ const CreateTree = (array) => {
         return node;
     }
 
-    return _root = buildTree(cleanArray, 0, cleanArray.length - 1);
+    _root = buildTree(cleanArray, 0, cleanArray.length - 1)
+
+    return {
+        getRoot: () => _root,
+        
+    };
 }
 
 export { CreateTree };
