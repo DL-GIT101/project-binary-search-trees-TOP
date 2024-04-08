@@ -40,7 +40,48 @@ const CreateTree = (array) => {
                     return node;
                 }
             }
-            getLeaf(value, _root);
+            _root = getLeaf(value, _root);
+        },
+        deleteItem: (value) => {
+            let next = null;
+            const remove = (value, node) => {
+                if(value === node.getValue()){
+                    if(node.getLeft() == null && node.getRight() == null){
+                        return null;
+                    }else if(node.getLeft() !== null && node.getRight() !== null){
+                        node.setRight(getNext(node.getRight()));
+                        node.setValue(next);
+                        return node;
+                    }else if(node.getLeft() !== null){
+                        node = node.getLeft();
+                        return node;
+                    }else if(node.getRight() !== null){ 
+                        node = node.getRight();
+                        return node;
+                    }
+                }else if(value > node.getValue()){
+                    node.setRight(remove(value, node.getRight()));
+                    return node;
+                }else {
+                    node.setLeft(remove(value, node.getLeft()));
+                    return node;
+                }
+            }
+
+            const getNext = (node) => {
+                if(node.getLeft() == null && node.getRight() == null){
+                    next = node.getValue();
+                    return null;
+                }else if(node.getLeft() == null){
+                    next = node.getValue();
+                    node = node.getRight();
+                    return node;
+                }else if(node.getLeft() !== null){
+                    node.setLeft(getNext(node.getLeft()));
+                    return node;
+                }
+            }
+            remove(value, _root);
         }
     };
 }
