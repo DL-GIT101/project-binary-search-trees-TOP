@@ -11,7 +11,7 @@ sampleTree.insert(88);
 sampleTree.insert(214);
 console.log("----- insert 2, 1, 214");
 prettyPrint(sampleTree.getRoot());
-console.log("----- delete 15, 5, 324");
+console.log("----- delete 15, 5, 324, 8");
 //delete leaf node 
 sampleTree.deleteItem(15);
 //delete node with single child
@@ -21,3 +21,18 @@ sampleTree.deleteItem(324);
 //delete root note
 sampleTree.deleteItem(8);
 prettyPrint(sampleTree.getRoot());
+console.log("----- find 9, 67, 1, 88, 2, 999");
+const found = [];
+found.push(sampleTree.find(9));
+found.push(sampleTree.find(67));
+found.push(sampleTree.find(1));
+found.push(sampleTree.find(88));
+found.push(sampleTree.find(2));
+found.push(sampleTree.find(999));
+found.forEach(node => {
+    if(node !== null){
+        console.log(node.getValue());
+    }else{
+        console.log(node);
+    }
+});

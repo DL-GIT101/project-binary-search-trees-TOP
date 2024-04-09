@@ -1,3 +1,4 @@
+import { find } from "lodash";
 import { CreateNode } from "./node";
 
 const CreateTree = (array) => {
@@ -29,18 +30,18 @@ const CreateTree = (array) => {
     return {
         getRoot: () => _root,
         insert: (value) => {
-            const getLeaf = (value, node) => {
+            const getLeafNode = (value, node) => {
                 if(node == null){
                     return CreateNode(value);
                 } else if (value > node.getValue()){
-                    node.setRight(getLeaf(value, node.getRight()));
+                    node.setRight(getLeafNode(value, node.getRight()));
                     return node;
                 }else {
-                    node.setLeft(getLeaf(value, node.getLeft()));
+                    node.setLeft(getLeafNode(value, node.getLeft()));
                     return node;
                 }
             }
-            _root = getLeaf(value, _root);
+            _root = getLeafNode(value, _root);
         },
         deleteItem: (value) => {
             let next = null;
@@ -82,6 +83,20 @@ const CreateTree = (array) => {
                 }
             }
             remove(value, _root);
+        },
+        find: (value) => {
+            const findNode = (value, node) => {
+                if(value === node.getValue()){
+                    return node;
+                }else if(node.getLeft() == null && node.getRight() == null){
+                    return null;
+                }else if(value > node.getValue()) {
+                    return findNode(value, node.getRight());
+                }else {
+                    return findNode(value, node.getLeft());
+                }
+            }
+            return findNode(value, _root);
         }
     };
 }
