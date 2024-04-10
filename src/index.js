@@ -23,6 +23,7 @@ sampleTree.deleteItem(8);
 prettyPrint(sampleTree.getRoot());
 console.log("----- find 9, 67, 1, 88, 2, 999");
 const found = [];
+const foundResult = [];
 found.push(sampleTree.find(9));
 found.push(sampleTree.find(67));
 found.push(sampleTree.find(1));
@@ -31,11 +32,12 @@ found.push(sampleTree.find(2));
 found.push(sampleTree.find(999));
 found.forEach(node => {
     if(node !== null){
-        console.log(node.getValue());
+        foundResult.push(node.getValue());
     }else{
-        console.log(node);
+        foundResult.push(null);
     }
 });
+console.log(foundResult);
 const displayValue = (node) => {
     let result = '[ ' + node.getValue() + ' ]';
     return result;
@@ -60,3 +62,14 @@ console.log("----- postorder without callback");
 console.log(sampleTree.postOrder());
 console.log("----- postorder with callback");
 console.log(sampleTree.postOrder(displayValue));
+//height
+const findThis1 = sampleTree.height(sampleTree.find(2));
+console.log("----- height from 2 is " + findThis1);
+const findThis2 = sampleTree.height(sampleTree.find(88));
+console.log("----- height from 88 is " + findThis2);
+const findThis3 = sampleTree.height(sampleTree.find(1));
+console.log("----- height from 1 is " + findThis3);
+const findThis4 = sampleTree.height(sampleTree.find(67));
+console.log("----- height from 67 is " + findThis4);
+const findThis5 = sampleTree.height(sampleTree.find(9));
+console.log("----- height from 9 is " + findThis5);

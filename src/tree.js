@@ -185,6 +185,26 @@ const CreateTree = (array) => {
             traverse(_root);
             return result;
         },
+        height: (node) => {
+            let height = 1;
+            const traverse = (node) => {
+                
+                if(node === null){ return 0}
+
+                let leftHeight = traverse(node.getLeft());
+                let rightHeight = traverse(node.getRight());
+
+                if(leftHeight > rightHeight){
+                    height = leftHeight;
+                }else {
+                    height = rightHeight;
+                }
+
+                return height + 1;
+            }
+
+            return traverse(node);
+        },
     }
 }
 
