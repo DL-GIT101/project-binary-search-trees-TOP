@@ -55,3 +55,8 @@ console.log("----- preorder without callback");
 console.log(sampleTree.preOrder());
 console.log("----- preorder with callback");
 console.log(sampleTree.preOrder(displayValue));
+//postorder
+console.log("----- postorder without callback");
+console.log(sampleTree.postOrder());
+console.log("----- postorder with callback");
+console.log(sampleTree.postOrder(displayValue));

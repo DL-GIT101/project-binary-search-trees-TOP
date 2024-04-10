@@ -163,7 +163,28 @@ const CreateTree = (array) => {
             }
             traverse(_root);
             return result;
-        }
+        },
+        postOrder: (callback = null) => {
+            let result = [];
+            const traverse = (node) => {
+
+                if(node === null){ return }
+
+                traverse(node.getLeft());
+                traverse(node.getRight());
+                process(node);
+            }
+
+            const process = (node) => {
+                if(callback == null){
+                    result.push(node.getValue());
+                }else{
+                    result.push(callback(node));
+                }
+            }
+            traverse(_root);
+            return result;
+        },
     }
 }
 
