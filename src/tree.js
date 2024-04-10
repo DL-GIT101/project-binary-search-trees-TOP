@@ -121,8 +121,31 @@ const CreateTree = (array) => {
                 }
             }
             return result;
-        }
-    };
+        },
+        inOrder: (callback = null) => {
+            let result = [];
+            const traverse = (node) => {
+
+                if(node === null){
+                    return;
+                }
+
+                traverse(node.getLeft());
+                process(node);
+                traverse(node.getRight());
+            }
+
+            const process = (node) => {
+                if(callback == null){
+                    result.push(node.getValue());
+                }else{
+                    result.push(callback(node));
+                }
+            }
+            traverse(_root);
+            return result;
+        },
+    }
 }
 
 export { CreateTree };

@@ -41,9 +41,13 @@ console.log("----- levelOrder no callback");
 // no callback 
 console.log(sampleTree.levelOrder());
 // with callback
-console.log("----- levelOrder with callbak");
+console.log("----- levelOrder with callback");
 const displayValue = (node) => {
     let result = '[ ' + node.getValue() + ' ]';
     return result;
 }
 console.log(sampleTree.levelOrder(displayValue));
+console.log("----- inorder without callback");
+console.log(sampleTree.inOrder());
+console.log("----- inorder with callback");
+console.log(sampleTree.inOrder(displayValue));
