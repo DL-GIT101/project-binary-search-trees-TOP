@@ -36,18 +36,22 @@ found.forEach(node => {
         console.log(node);
     }
 });
-console.log("----- levelOrder");
-console.log("----- levelOrder no callback");
-// no callback 
-console.log(sampleTree.levelOrder());
-// with callback
-console.log("----- levelOrder with callback");
 const displayValue = (node) => {
     let result = '[ ' + node.getValue() + ' ]';
     return result;
 }
+//levelorder
+console.log("----- levelOrder no callback");
+console.log(sampleTree.levelOrder());
+console.log("----- levelOrder with callback");
 console.log(sampleTree.levelOrder(displayValue));
+//inorder
 console.log("----- inorder without callback");
 console.log(sampleTree.inOrder());
 console.log("----- inorder with callback");
 console.log(sampleTree.inOrder(displayValue));
+//preorder
+console.log("----- preorder without callback");
+console.log(sampleTree.preOrder());
+console.log("----- preorder with callback");
+console.log(sampleTree.preOrder(displayValue));

@@ -126,9 +126,7 @@ const CreateTree = (array) => {
             let result = [];
             const traverse = (node) => {
 
-                if(node === null){
-                    return;
-                }
+                if(node === null){ return }
 
                 traverse(node.getLeft());
                 process(node);
@@ -145,6 +143,27 @@ const CreateTree = (array) => {
             traverse(_root);
             return result;
         },
+        preOrder: (callback = null) => {
+            let result = [];
+            const traverse = (node) => {
+
+                if(node === null){ return }
+
+                process(node);
+                traverse(node.getLeft());
+                traverse(node.getRight());
+            }
+
+            const process = (node) => {
+                if(callback == null){
+                    result.push(node.getValue());
+                }else{
+                    result.push(callback(node));
+                }
+            }
+            traverse(_root);
+            return result;
+        }
     }
 }
 
