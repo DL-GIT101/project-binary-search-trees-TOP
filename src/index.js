@@ -36,3 +36,14 @@ found.forEach(node => {
         console.log(node);
     }
 });
+console.log("----- levelOrder");
+console.log("----- levelOrder no callback");
+// no callback 
+console.log(sampleTree.levelOrder());
+// with callback
+console.log("----- levelOrder with callbak");
+const displayValue = (node) => {
+    let result = '[ ' + node.getValue() + ' ]';
+    return result;
+}
+console.log(sampleTree.levelOrder(displayValue));

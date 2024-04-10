@@ -1,4 +1,3 @@
-import { find } from "lodash";
 import { CreateNode } from "./node";
 
 const CreateTree = (array) => {
@@ -97,6 +96,31 @@ const CreateTree = (array) => {
                 }
             }
             return findNode(value, _root);
+        },
+        levelOrder: (callback = null) => {
+            let queue = [_root];
+            let result = [];
+            const traverse = (node) => {
+                if(node.getLeft() !== null){
+                    queue.push(node.getLeft());
+                }
+                if(node.getRight() !== null){
+                    queue.push(node.getRight());
+                }
+                queue.shift();
+            }
+            if(callback == null){
+                while(queue[0]){
+                    result.push(queue[0].getValue());
+                    traverse(queue[0]);
+                }
+            }else {
+                while(queue[0]){
+                    result.push(callback(queue[0]));
+                    traverse(queue[0]);
+                }
+            }
+            return result;
         }
     };
 }
