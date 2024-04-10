@@ -98,28 +98,28 @@ const CreateTree = (array) => {
             return findNode(value, _root);
         },
         levelOrder: (callback = null) => {
-            let queue = [_root];
+            let queue = [];
             let result = [];
             const traverse = (node) => {
-                if(node.getLeft() !== null){
-                    queue.push(node.getLeft());
-                }
-                if(node.getRight() !== null){
-                    queue.push(node.getRight());
-                }
-                queue.shift();
-            }
-            if(callback == null){
-                while(queue[0]){
-                    result.push(queue[0].getValue());
-                    traverse(queue[0]);
-                }
-            }else {
-                while(queue[0]){
-                    result.push(callback(queue[0]));
-                    traverse(queue[0]);
+                if(node === null){ return };
+                queue.push(node);
+
+                while(queue.length !== 0){
+                    let current = queue[0];
+                    process(current);
+                    if(current.getLeft() !== null){ queue.push(current.getLeft())}
+                    if(current.getRight() !== null){ queue.push(current.getRight())}
+                    queue.shift();
                 }
             }
+            const process = (node) => {
+                if(callback == null){
+                    result.push(node.getValue());
+                }else{
+                    result.push(callback(node));
+                }
+            }
+            traverse(_root);
             return result;
         },
         inOrder: (callback = null) => {
